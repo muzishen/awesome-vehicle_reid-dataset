@@ -57,6 +57,7 @@ Cars Dataset包含196种汽车的16,185张图像。数据分割为8,144张训练
 项目链接：[链接](http://ai.stanford.edu/~jkrause/cars/car_dataset.html)
 训练数据：[链接](http://imagenet.stanford.edu/internal/car196/cars_train.tgz)
 测试数据：[链接](http://imagenet.stanford.edu/internal/car196/cars_test.tgz)
+
 7. A Large-Scale Car Dataset for Fine-Grained Categorization and Verification （CVPR 2015）
 数据库名称：CompCars
 论文：[链接](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Yang_A_Large-Scale_Car_2015_CVPR_paper.pdf)
@@ -78,11 +79,12 @@ CompCars数据集包含来自网络和监视的两个途径的图像。网络图
 数据库描述:
 监督监督收集数据并用于车辆的细粒度识别以及包括比例尺在内的摄像头校准，数据集包含大约140万张图片，包括多个摄像头进行拍摄，每个摄像头都用边框进行注释，论文很简略的介绍了数据，具体其概况得看数据怎么样。
 项目网址：[链接](https://medusa.fit.vutbr.cz/traffic/research-topics/fine-grained-vehicle-recognition/unsupervised-processing-of-vehicle-appearance-for-automatic-understanding-in-traffic-surveillance/)
+
 10. BoxCars: Improving Fine-Grained Recognition of Vehicles Using 3-D Bounding Boxes in Traffic Surveillance [IEEE T-ITS 2019]
 数据库名称：BoxCars116k
 论文：[链接](https://ieeexplore.ieee.org/document/8307405)
 数据库描述：
-该数据集由多个监控摄像头从各个角度拍摄116K车辆图像。具体信息在项目没介绍，明天我看论文
+该数据集由多个监控摄像头从各个角度拍摄116K车辆图像。具体信息在项目没介绍.
 项目网址：[链接](https://medusa.fit.vutbr.cz/traffic/research-topics/fine-grained-vehicle-recognition/boxcars-improving-vehicle-fine-grained-recognition-using-3d-bounding-boxes-in-traffic-surveillance/)
 
 
