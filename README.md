@@ -13,9 +13,8 @@ Vehicle re-identification has drawn intensive attention in the computer vision s
 ##### **数据库描述**： 
     它包含超过50,000张776辆车的图像，这些图像由20台摄像机拍摄，在24小时内覆盖1.0平方公里的面积，这使得该数据集可扩展到足以用于车辆Re-Id和其他相关研究。
     图像是在真实世界的无约束监视场景中捕获的，并标有不同的属性，例如： BBox，类型，颜色和品牌。因此可以学习和评估车辆Re-Id的复杂模型。
-每辆车在不同的视点，照明，分辨率和遮挡下由2~18台摄像机拍摄，在实际监控环境中为车辆Re-Id提供高复发率。
-    它还标有足够的牌照和时空信息，例如板块的BBox，板条，车辆的时间戳以及相邻相机之间的距离。
-#####下载地址：[链接](https://vehiclereid.github.io/VeRi/)
+每辆车在不同的视点，照明，分辨率和遮挡下由2~18台摄像机拍摄，在实际监控环境中为车辆Re-Id提供高复发率。它还标有足够的牌照和时空信息，例如板块的BBox，板条，车辆的时间戳以及相邻相机之间的距离。
+##### 下载地址：[链接](https://vehiclereid.github.io/VeRi/)
 
 #### 2.Deep Relative Distance Learning: Tell the Difference Between Similar Vehicles
 ##### **数据库名称**：***VehicleID***
@@ -46,7 +45,7 @@ Vehicle re-identification has drawn intensive attention in the computer vision s
 ##### **论文：[链接](https://arxiv.org/pdf/1803.07913.pdf)**
 ##### **数据库说明：**
 该数据集是基于现实事件的数据集，它由从市区和高速公路环境中的汽车驾驶中获取的约24000个样本组成。用安装在汽车挡风玻璃后面的ATIS摄像机拍摄了80分钟，并将其转换为常规的灰度图像，并标记样本。该数据集有12336个汽车样本和11693非汽车样本组成的两类数据集。其中训练集分为7940个汽车和7482个背景样本，测试集包含4396个汽车样本和4211个背景测试样本。
-#####**下载地址**：[链接](https://www.prophesee.ai/dataset-n-cars-download/)
+##### **下载地址**：[链接](https://www.prophesee.ai/dataset-n-cars-download/)
 
 #### 6.Exploiting Multi-Grain Ranking Constraints for Precisely Searching Visually-Similar Vehicles (ICCV 2017)
 ##### **数据库名称**：*PKU-VD*
@@ -55,13 +54,13 @@ Vehicle re-identification has drawn intensive attention in the computer vision s
 该数据集包含了两个大型车辆数据集（VD1和VD2），它们分别从两个城市的真实世界不受限制的场景拍摄图像。其中VD1是从高分辨率交通摄像头获得的，VD2中的图像则是从监视视频中获取的。作者对原始数据执行车辆检测，以确保每个图像仅包含一辆车辆。由于隐私保护的限制，所有车牌号码都已被黑色覆盖遮挡。所有车辆图像均从前视图进行拍摄。
 数据集中为每个图像提供了多样化的属性注释，包括身份编号，精确的车辆模型和车辆颜色。具体来说，身份证号码（ID）是唯一的，并且属于同一车辆的所有图像都具有相同的ID（我们确保每个车辆ID的数据集中至少有两个图像）。我们提供最精确的模型类型，包括详细的车辆类型和不同的生产年份。例如，奥迪A6L-2012＆2015，奥迪A6-2004，奥迪A4-2006＆2008和奥迪A4-2004＆2005是数据集中的四个不同的车辆模型。至于颜色信息，我们的数据集中标注了11种常见颜色。细节如下：
 VD1：原先包含1097649张图像，1232种车俩模型，11种车辆颜色，但删除图像里面有多辆车辆以及从车辆后方拍摄的图片，该数据集仅剩846358张图像，141756辆车辆。
-VD2：原先包含807260张图像，79763辆车辆，1112种车辆模型，11种车辆颜色。与VD1进行同样的操作后690518张图像。具体训练和测试分割如下表所示。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191211141228324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE3NDAzNjE3,size_16,color_FFFFFF,t_70)**数据库链接**：[链接](http://pkuml.org/resources/pku-vds.html)
+VD2：原先包含807260张图像，79763辆车辆，1112种车辆模型，11种车辆颜色。与VD1进行同样的操作后690518张图像。
+**数据库链接**：[链接](http://pkuml.org/resources/pku-vds.html)
 ##### **下载链接**：填写协议，后下载
 
 #### 7.百度阿波罗3D汽车数据集
-#####**数据库名称**：*百度阿波罗3D汽车数据集*
-#####**项目网址：[链接](http://apolloscape.auto/car_instance.html)**
+##### **数据库名称**：*百度阿波罗3D汽车数据集*
+##### **项目网址：[链接](http://apolloscape.auto/car_instance.html)**
 ##### **数据库描述：**
 数据集中，camera文件夹中储存相机固有参数、car_model文件夹中储存汽车模型集，保存格式为pkl、ca_poses文件夹中存储图片中标记为汽车的位置、imags文件夹中存储汽车图像、split文件夹中存储着训练和验证图像的索引。
 ##### **下载地址**：[链接](http://apolloscape.auto/car_instance.html)
@@ -87,7 +86,7 @@ CompCars数据集包含来自网络和监视的两个途径的图像。网络图
 ##### **论文：**[链接](https://ieeexplore.ieee.org/abstract/document/7055873)
 ##### **数据库描述：**
 包含9580个车辆图像和6种车型：轿车、运动型多用途车（SUV）、小型客车、卡车、公共汽车和小型货车。每种类型图像数目分别为5922、1392、883、558和476。该数据集中包含白天和夜间场景，且都是晴天场景，并且不存在噪声背景，雨、雪、人，其他车辆等。
-#####**下载地址**：[链接](https://pan.baidu.com/s/1pKCr72V) 密码：29cf
+##### **下载地址**：[链接](https://pan.baidu.com/s/1pKCr72V) 密码：29cf
 
 ####  11.Unsupervised Processing of Vehicle Appearance for Automatic Understanding in Traffic Surveillance [DICTA 2015]
 ##### **数据库名称：***VehicleGrouping*
@@ -95,6 +94,7 @@ CompCars数据集包含来自网络和监视的两个途径的图像。网络图
 ##### **数据库描述:**
 监督监督收集数据并用于车辆的细粒度识别以及包括比例尺在内的摄像头校准，数据集包含大约140万张图片，包括多个摄像头进行拍摄，每个摄像头都用边框进行注释.
 #####**项目网址：**[链接](https://medusa.fit.vutbr.cz/traffic/research-topics/fine-grained-vehicle-recognition/unsupervised-processing-of-vehicle-appearance-for-automatic-understanding-in-traffic-surveillance/)
+
 #### 12. BoxCars: Improving Fine-Grained Recognition of Vehicles Using 3-D Bounding Boxes in Traffic Surveillance [IEEE T-ITS 2019]
 ##### **数据库名称**：*BoxCars116k*
 ##### **论文**：[链接](https://ieeexplore.ieee.org/document/8307405)
