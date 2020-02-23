@@ -1,0 +1,84 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title></title>
+<style id="system" type="text/css">h1,h2,h3,h4,h5,h6,p,blockquote {    margin: 0;    padding: 0;}body {    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;    font-size: 13px;    line-height: 18px;    color: #737373;    margin: 10px 13px 10px 13px;}a {    color: #0069d6;}a:hover {    color: #0050a3;    text-decoration: none;}a img {    border: none;}p {    margin-bottom: 9px;}h1,h2,h3,h4,h5,h6 {    color: #404040;    line-height: 36px;}h1 {    margin-bottom: 18px;    font-size: 30px;}h2 {    font-size: 24px;}h3 {    font-size: 18px;}h4 {    font-size: 16px;}h5 {    font-size: 14px;}h6 {    font-size: 13px;}hr {    margin: 0 0 19px;    border: 0;    border-bottom: 1px solid #ccc;}blockquote {    padding: 13px 13px 21px 15px;    margin-bottom: 18px;    font-family:georgia,serif;    font-style: italic;}blockquote:before {    content:"C";    font-size:40px;    margin-left:-10px;    font-family:georgia,serif;    color:#eee;}blockquote p {    font-size: 14px;    font-weight: 300;    line-height: 18px;    margin-bottom: 0;    font-style: italic;}code, pre {    font-family: Monaco, Andale Mono, Courier New, monospace;}code {    background-color: #fee9cc;    color: rgba(0, 0, 0, 0.75);    padding: 1px 3px;    font-size: 12px;    -webkit-border-radius: 3px;    -moz-border-radius: 3px;    border-radius: 3px;}pre {    display: block;    padding: 14px;    margin: 0 0 18px;    line-height: 16px;    font-size: 11px;    border: 1px solid #d9d9d9;    white-space: pre-wrap;    word-wrap: break-word;}pre code {    background-color: #fff;    color:#737373;    font-size: 11px;    padding: 0;}@media screen and (min-width: 768px) {    body {        width: 748px;        margin:10px auto;    }}</style><style id="custom" type="text/css"></style></head>
+<body><p><strong>Paper</strong> <a href="http://openaccess.thecvf.com/content_ICCV_2019/html/Guo_Beyond_Human_Parts_Dual_Part-Aligned_Representations_for_Person_Re-Identification_ICCV_2019_paper.html">Beyond Human Parts: Dual Part-Aligned Representations
+for Person Re-Identification</a>
+<strong>Code</strong> <a href="https://github.com/ggjy/P2Net.pytorch">代码</a>
+
+</p>
+<h3>Abstract</h3>
+<p>由于各种复杂的因素，人的再识别是一项具有挑战性的任务。最近的研究尝试集成人工解析结果或外部定义的属性，以帮助捕获人工部分或重要的对象区域。另一方面，仍然存在许多有用的<strong>上下文线索</strong>，它们不属于预定义的人员部分或属性的范围。在这篇论文中，我们利用<strong>精确的人体部位和粗糙的非人体部位</strong>来处理丢失的<strong>语境线索</strong>。在我们的实现中，我们应用一个人工解析模型来提取<strong>二进制人工部分掩码</strong>，并使用一个<strong>自我注意机制</strong>来捕获<strong>软隐藏soft latent(非人工)部分</strong>掩码。我们通过在三个具有挑战性的基准上(Market-1501、DukeMTMC-reID和CUHK03)的最新表现，验证了我们的方法的有效性。
+
+</p>
+<h3>Introduction</h3>
+<p>分区：
+（1）Hand-crafted partitioning, 手工网格分区
+（2）Attention mechanism，注意机制，它试图在最后一个输出特征图上学习一个注意图，并相应地构造对齐的部分特征
+（3）Predicting a set of predefined attributes, 预测一组预定义属性作为指导匹配过程的有用特征
+（4）Injecting human pose estimation or human parsing result， 注入人体姿态估计或人体解析结果，提取基于预测的人体关键点或语义人体部位区域的人体部位对齐特征
+</p>
+<h4>引出问题：而这些方法的成功很大程度上取决于人工解析模型或姿态估计器的准确性。以往的研究主要集中在学习更准确的人体部位表征，而忽略了潜在有用的上下文线索的影响，这些线索可以被称为“非人体（non-human）”部位。</h4>
+<p>现有人类基于解析方法[50,55]利用现成的语义分割模型将输入图像划分为K的预定义的人类的部分,根据预定义的标签set.1除了这些预定义的类别,部分仍存在许多对象或部分可鉴定的关键人,但往往被视为背景pre-trained人类的解析模型。例如，我们通过图1中Market-1501数据集上的人工解析结果演示了一些失败案例。我们可以发现，那些属于未定义类别的物品，如<strong>背包、手提包和伞</strong>，实际上是有帮助的，有时对人的重新识别是至关<strong>重要</strong>的。现有的人工解析数据集主要<strong>侧重于对人工区域的解析</strong>，而这些数据集大多不能包含所有可能的可识别对象，这些可识别对象可以帮助人员重新识别。
+
+</p>
+<p>在以前的文献中，除了预定义的人体部件或属性外，显式捕获有用的信息还没有得到很好的研究。灵感来自于最近流行self-attention机制,我们试图解决上述问题通过学习潜在的一部分原始数据,根据像素之间的外观相似,它提供了一个粗估计部分人类和非人类的部分,后者在很大程度上忽视了从以前的方法基于人类解析。
+
+</p>
+<p>在此基础上，提出了一种<strong>dual part-aligned representation</strong>（对偶部分对齐）的表示方法，将<strong>精确的人体部分</strong>和<strong>粗糙的非人体部分</strong>的互补信息结合起来。在我们的实现中，我们应用了一个<strong>人工解析模型来提取人工部分掩码</strong>，并为从低级到高级的特性计算与人工部分一致的表示。对于<strong>非人类的部分信息，我们使用自我注意机制来学习将所有属于同一潜在部分的像素分组在一起</strong>。我们<strong>还提取了特征图中潜在的非人体部位信息，从低层次到高层次。</strong>该方法将精确的人体部位信息和粗糙的非人体部位信息的优点结合起来，学习用其所属的人体部位或非人体部位的表征来增强每个像素的表征。
+
+</p>
+<h4>Contribution</h4>
+<p>(1) 提出对偶部分对齐表示，利用精确的人体部分和粗糙的非人体部分的互补信息来更新表示。
+(2) 介绍了P2-Net，并展示了我们的P2-Net在三个基准上(包括Market-1501、DukeMTMCreID和CUHK03)实现了新的最先进的性能。
+(3) 分析了人类部分表征和潜在部分(非人类部分)表征的贡献，并讨论了它们在消融研究中的互补优势。
+
+</p>
+<h4>Related work</h4>
+<p>从5方面介绍前人工作
+（1） Hand-crafted Splitting for ReID. 手工分区
+（2）Semantic Segmentation for ReID.  语义分割
+（3）Poses/Keypoints for ReID. 姿态和关键点
+（4）Attention for ReID. 注意力机制
+（5）Attributes for ReID  属性
+
+</p>
+<h4>Method</h4>
+<p>首先，介绍对偶部件表示，它学习结合准确的人体部位信息和粗糙的潜在部位信息，以增加每个像素的表示(第3.1节)。
+其次，介绍了网络架构和P2-Net的详细实现(第3.2节)。
+</p>
+<h5>Dual PartAligned Representation</h5>
+<p>我们的方法包括两个分支:人体部分分支和潜在部分分支。 
+给定一个特征图 X = N <em> C， C = H </em>  W ,<br>我们利用人体部分分支来提取精确的人体部件MASK，并相应地计算出人体的特征表示。
+我们还使用一个潜在的部件分支来学习根据<strong>不同像素之间的外观相似性</strong>捕获粗糙的非人类部件MASK和粗糙的人类部件MASK。
+然后根据粗糙部件MASK计算潜在的部件对齐表示。
+最后，我们利用人的部件对齐表示和潜在的部件对齐表示对原始表示进行了扩充。
+
+</p>
+<h6>Human Part-Aligned Representation</h6>
+<p>主要思想是用像素所属的人的部分特征来表示每个像素，人的部分表示是由一组<strong>置信度图加权的像素表示的集合</strong>。每个置信度图被用来代替语义上的人的部分。
+
+</p>
+<h6>Latent Part-Aligned Representation.</h6>
+<p>在本节中，我们将解释如何估计潜在部分表示。由于我们无法根据现有的方法准确预测非人类线索的MASK，因此我们采用了自注意机制[44,48]，通过学习根据<strong>每个像素与其他像素之间的语义相似性，从数据中自动捕获一些粗糙的潜在部分来增强我们的框架</strong>。潜在部分用于捕获在human part分支中利用得很弱的细节。我们特别感兴趣的是来自<strong>粗糙的非人类部分</strong>的MASK对被预定义的人类部分或属性遗漏的重要线索的贡献。
+
+</p>
+<h5>P2-Net</h5>
+<p><img src="https://img-blog.csdnimg.cn/20200216170555713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE3NDAzNjE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">
+</p>
+<h4>Implementation Details</h4>
+<p>我们选择在ImageNet上预训的ResNet-50作为骨干。
+在从最后一个残差块获得特征映射后，我们使用全局平均池和线性层(FC+BN+ReLU)来计算256-D的特征嵌入。
+我们使用以softmax loss为基线模型的ResNet-50训练，并将ResNet的最后一个阶段的步幅设置为[41]之后的2到1。
+我们还使用三重损耗[4,19,56]来改善性能。
+
+</p>
+<p>我们所有的实现都是基于PyTorch框架的[26]。我们将所有的训练图像调整到384*128，然后通过水平翻转和随机擦除来增加它们[62]。我们将批量大小设为64，训练基础学习率为0.05的模型，经过40个epoch后下降到0.005，训练在60个epoch结束。我们设动量= 0.9，重量衰减为0.0005。所有的实验都是在一个单独的NVIDIA泰坦XP GPU上进行的。
+
+</p>
+<h4>Results</h4>
+<p><img src="https://img-blog.csdnimg.cn/20200216171224319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE3NDAzNjE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/20200216171231538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE3NDAzNjE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/20200216171239624.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE3NDAzNjE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">
+
+
+</p>
+</body></html>
